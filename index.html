@@ -7,44 +7,141 @@
     <title>Tienda Online - Lista de Productos</title>
 </head>
 <body>
-    <header><h1>Tienda Online</h1>
+    <header>
+        <h1>Tienda Online</h1>
         <p>Explora nuestra selección de productos con los mejores precios.</p>
+        <div class="carrito-icono">
+            <span id="cantidad-carrito">0</span>
+            <img src="ruta/al/icono-carrito.png" alt="Carrito">
+        </div>
     </header>
-    <div class="productos">
-        <div class="producto">
-            <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" alt="Zapatos">
-            <p class="precio">$10.99</p>
-            <p class="precio">Zapatos</p>
+    <div class="contenedor-principal">
+        <div class="productos">
+            <div class="producto">
+                <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" alt="Zapatos">
+                <p class="precio">$10.99</p>
+                <p class="nombre-producto">Zapatos</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa">
+                <p class="precio">$15.99</p>
+                <p class="nombre-producto">Camisa</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img-tienda2/1698574544ecd7d826d3bafe9749acc82bba70464b_thumbnail_720x.jpg" alt="Cinturon">
+                <p class="precio">$9.59</p>
+                <p class="nombre-producto">Cinturon</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img-tienda2/e180d93b-817c-4c33-a8ba-9fa590228b31.webp" alt="Medias">
+                <p class="precio">$7.49</p>
+                <p class="nombre-producto">Medias</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón">
+                <p class="precio">$12.29</p>
+                <p class="nombre-producto">Pantalón</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img-tienda2/devre-saco_02d000118-060_001.webp" alt="Saco">
+                <p class="precio">$16.89</p>
+                <p class="nombre-producto">Saco</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
         </div>
-        <div class="producto">
-            <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa">
-            <p class="precio">$15.99</p> 
-            <p class="precio">Camisa</p>
-        </div>
-        <div class="producto">
-            <img src="img-tienda2/1698574544ecd7d826d3bafe9749acc82bba70464b_thumbnail_720x.jpg" alt="Cinturon">
-            <p class="precio">$9.59</p>
-            <p class="precio">Cinturon</p>
-        </div>
-        <div class="producto">
-            <img src="img-tienda2/e180d93b-817c-4c33-a8ba-9fa590228b31.webp" alt="Medias">
-            <p class="precio">$7.49</p>
-            <p class="precio">Medias</p>
-        </div>
-        <div class="producto">
-            <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón">
-            <p class="precio">$12.29</p>
-            <p class="precio">Pantalón</p>
-        </div>
-        <div class="producto">
-            <img src="img-tienda2/devre-saco_02d000118-060_001.webp" alt="Saco">
-            <p class="precio">$16.89</p>
-            <p class="precio">Saco</p>
+        <div class="carrito-detalle">
+            <h2>Carrito de Compras</h2>
+            <div id="lista-carrito">
+                </div>
+            <p id="total-carrito">Total: $0.00</p>
+            <button id="boton-comprar">Comprar</button>
         </div>
     </div>
     <div class="imagen-abajo">
         <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página">
     </div>
     <footer><p>@ David Morales</p></footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botonesAgregar = document.querySelectorAll('.boton-agregar');
+            const cantidadCarritoElement = document.getElementById('cantidad-carrito');
+            const listaCarritoElement = document.getElementById('lista-carrito');
+            const totalCarritoElement = document.getElementById('total-carrito');
+            const botonComprar = document.getElementById('boton-comprar');
+            const carrito = [];
+
+            function actualizarCarritoVisual() {
+                cantidadCarritoElement.textContent = carrito.length;
+                listaCarritoElement.innerHTML = '';
+                let total = 0;
+
+                carrito.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('item-en-carrito');
+                    itemDiv.innerHTML = `
+                        <img src="${item.imagen}" alt="${item.nombre}" width="50">
+                        <p>${item.nombre}</p>
+                        <p>${item.precio}</p>
+                        <span class="cantidad-item">(${item.cantidad})</span>
+                        <button class="boton-eliminar-item" data-index="${index}">Eliminar</button>
+                    `;
+                    listaCarritoElement.appendChild(itemDiv);
+                    total += parseFloat(item.precio.replace('$', '')) * item.cantidad;
+                });
+
+                totalCarritoElement.textContent = `Total: $${total.toFixed(2)}`;
+
+                // Agregar funcionalidad para eliminar items
+                const botonesEliminarItem = document.querySelectorAll('.boton-eliminar-item');
+                botonesEliminarItem.forEach(boton => {
+                    boton.addEventListener('click', function() {
+                        const indexAEliminar = parseInt(this.dataset.index);
+                        carrito.splice(indexAEliminar, 1);
+                        actualizarCarritoVisual();
+                    });
+                });
+            }
+
+            botonesAgregar.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const productoDiv = this.parentNode;
+                    const imagenSrc = productoDiv.querySelector('img').src;
+                    const precioTexto = productoDiv.querySelector('.precio').textContent;
+                    const nombre = productoDiv.querySelector('.nombre-producto').textContent;
+
+                    const productoExistente = carrito.find(item => item.nombre === nombre);
+
+                    if (productoExistente) {
+                        productoExistente.cantidad++;
+                    } else {
+                        carrito.push({
+                            imagen: imagenSrc,
+                            precio: precioTexto,
+                            nombre: nombre,
+                            cantidad: 1
+                        });
+                    }
+                    actualizarCarritoVisual();
+                });
+            });
+
+            botonComprar.addEventListener('click', () => {
+                if (carrito.length > 0) {
+                    alert('¡Gracias por tu compra!');
+                    carrito.length = 0; // Vaciar el carrito después de la compra (simulado)
+                    actualizarCarritoVisual();
+                } else {
+                    alert('El carrito está vacío. ¡Agrega algunos productos!');
+                }
+            });
+
+            actualizarCarritoVisual(); // Inicializar la visualización del carrito
+        });
+    </script>
 </body>
 </html>
