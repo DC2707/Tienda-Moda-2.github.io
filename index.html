@@ -12,7 +12,7 @@
         <p>Explora nuestra selección de productos con los mejores precios.</p>
         <div class="carrito-icono">
             <span id="cantidad-carrito">0</span>
-            <img src="https://previews.123rf.com/images/jongjet303/jongjet3031703/jongjet303170300211/74000821-icono-de-carro-de-esquema-icono-de-dise%C3%B1o-de-p%C3%A1gina-web.jpg" alt="Carrito">
+            <img src="ruta/al/icono-carrito.png" alt="Carrito">
         </div>
     </header>
     <div class="contenedor-principal">
@@ -23,10 +23,19 @@
                 <p class="nombre-producto">Zapatos</p>
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
-            <div class="producto">
+            <div class="producto con-talla">
                 <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa">
                 <p class="precio">$15.99</p>
                 <p class="nombre-producto">Camisa</p>
+                <div class="selector-talla">
+                    <label for="talla-camisa">Talla:</label>
+                    <select class="talla-select" id="talla-camisa">
+                        <option value="">Seleccionar</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                    </select>
+                </div>
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
             <div class="producto">
@@ -41,22 +50,35 @@
                 <p class="nombre-producto">Medias</p>
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
-            <div class="producto">
+            <div class="producto con-talla">
                 <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón">
                 <p class="precio">$12.29</p>
                 <p class="nombre-producto">Pantalón</p>
+                <div class="selector-talla">
+                    <label for="talla-pantalon">Talla:</label>
+                    <select class="talla-select" id="talla-pantalon">
+                        <option value="">Seleccionar</option>
+                        <option value="30">30</option>
+                        <option value="32">32</option>
+                        <option value="34">34</option>
+                    </select>
+                </div>
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
-            <div class="producto">
+            <div class="producto con-talla">
                 <img src="img-tienda2/devre-saco_02d000118-060_001.webp" alt="Saco">
                 <p class="precio">$16.89</p>
                 <p class="nombre-producto">Saco</p>
-                <button class="boton-agregar">Añadir al carrito</button>
-            </div>
-            <div class="producto">
-                <img src="https://www.puntoblanco.co/cdn/shop/files/wodu-azul-28006-745130_028006-1.jpg?v=1720922756&width=493" alt="Chaqueta">
-                <p class="precio">$21.39</p>
-                <p class="nombre-producto">Chaqueta</p>
+                <div class="selector-talla">
+                    <label for="talla-saco">Talla:</label>
+                    <select class="talla-select" id="talla-saco">
+                        <option value="">Seleccionar</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
         </div>
@@ -89,9 +111,10 @@
                 carrito.forEach((item, index) => {
                     const itemDiv = document.createElement('div');
                     itemDiv.classList.add('item-en-carrito');
+                    let detallesTalla = item.talla ? `<span class="detalle-talla">Talla: ${item.talla}</span>` : '';
                     itemDiv.innerHTML = `
                         <img src="${item.imagen}" alt="${item.nombre}" width="50">
-                        <p>${item.nombre}</p>
+                        <p>${item.nombre} ${detallesTalla}</p>
                         <p>${item.precio}</p>
                         <span class="cantidad-item">(${item.cantidad})</span>
                         <button class="boton-eliminar-item" data-index="${index}">Eliminar</button>
@@ -102,7 +125,6 @@
 
                 totalCarritoElement.textContent = `Total: $${total.toFixed(2)}`;
 
-                // Agregar funcionalidad para eliminar items
                 const botonesEliminarItem = document.querySelectorAll('.boton-eliminar-item');
                 botonesEliminarItem.forEach(boton => {
                     boton.addEventListener('click', function() {
@@ -119,8 +141,15 @@
                     const imagenSrc = productoDiv.querySelector('img').src;
                     const precioTexto = productoDiv.querySelector('.precio').textContent;
                     const nombre = productoDiv.querySelector('.nombre-producto').textContent;
+                    const selectorTalla = productoDiv.querySelector('.talla-select');
+                    let tallaSeleccionada = selectorTalla ? selectorTalla.value : null;
 
-                    const productoExistente = carrito.find(item => item.nombre === nombre);
+                    if (productoDiv.classList.contains('con-talla') && !tallaSeleccionada) {
+                        alert(`Por favor, selecciona la talla para ${nombre}.`);
+                        return;
+                    }
+
+                    const productoExistente = carrito.find(item => item.nombre === nombre && item.talla === tallaSeleccionada);
 
                     if (productoExistente) {
                         productoExistente.cantidad++;
@@ -129,7 +158,8 @@
                             imagen: imagenSrc,
                             precio: precioTexto,
                             nombre: nombre,
-                            cantidad: 1
+                            cantidad: 1,
+                            talla: tallaSeleccionada
                         });
                     }
                     actualizarCarritoVisual();
@@ -139,14 +169,14 @@
             botonComprar.addEventListener('click', () => {
                 if (carrito.length > 0) {
                     alert('¡Gracias por tu compra!');
-                    carrito.length = 0; // Vaciar el carrito después de la compra (simulado)
+                    carrito.length = 0;
                     actualizarCarritoVisual();
                 } else {
                     alert('El carrito está vacío. ¡Agrega algunos productos!');
                 }
             });
 
-            actualizarCarritoVisual(); // Inicializar la visualización del carrito
+            actualizarCarritoVisual();
         });
     </script>
 </body>
