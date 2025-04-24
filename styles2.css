@@ -202,8 +202,33 @@ footer{
     text-align: center;
     margin-top: 30px;
 }
+.con-talla .selector-talla {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-/* Media Queries (sin cambios significativos para el carrito, pero se mantienen) */
+.con-talla .selector-talla label {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.con-talla .selector-talla select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+}
+
+.detalle-talla {
+    font-size: 0.8em;
+    color: #777;
+    margin-left: 5px;
+}
+
+/* cambios para el carrito */
 @media (max-width: 768px) {
     .productos {
         grid-template-columns: repeat(2, 1fr);
