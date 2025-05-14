@@ -29,33 +29,33 @@
     background-color: #5e3c3c;
 }
 
-/* Estilos para la barra de navegación (manteniendo los originales) */
-.barra-navegacion {
-    background-color: #5e3c3c;
-    padding: 10px 0;
-    margin-top: 10px;
+.barra-navegacion-TM {
+    background-color: #fff;
+    padding: 15px 0; 
+    border-bottom: 1px solid #ccc; 
 }
 
-.barra-navegacion ul {
+.barra-navegacion-TM ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center; 
+    gap: 30px; 
 }
 
-.barra-navegacion li a {
-    color: #faf7f6;
+.barra-navegacion-TM li a {
     text-decoration: none;
+    color: #000; 
     font-size: 1em;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    padding: 5px 10px; 
+    transition: color 0.3s ease; 
 }
 
-.barra-navegacion li a:hover {
-    background-color: #775151;
+.barra-navegacion-TM li a:hover {
+    color: #777; 
 }
 
 /* Estilos para el ordenamiento */
