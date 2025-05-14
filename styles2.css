@@ -28,15 +28,16 @@
 .barra-busqueda-izquierda button[type="submit"]:hover {
     background-color: #5e3c3c;
 }
-.barra-navegacion-izquierda-TM {
+/* Estilos para la barra de navegación izquierda*/
+.barra-navegacion-izquierda-hm {
     background-color: #fff; /* Fondo blanco */
     padding: 15px 20px; /* Espaciado vertical y horizontal */
     border-bottom: 1px solid #ccc; /* Línea inferior sutil */
     text-align: left; /* Alinea el texto a la izquierda del contenedor */
 }
 
-.barra-navegacion-izquierda-TM ul {
-    list-style: none;
+.barra-navegacion-izquierda-hm ul {
+    list-style: none; /* Elimina las viñetas */
     padding: 0;
     margin: 0;
     display: flex; /* Utiliza flexbox para la disposición horizontal */
@@ -45,7 +46,7 @@
     gap: 30px; /* Espacio entre las categorías */
 }
 
-.barra-navegacion-izquierda-TM li a {
+.barra-navegacion-izquierda-hm li a {
     text-decoration: none;
     color: black; /* Texto negro */
     font-size: 1em;
@@ -54,7 +55,7 @@
     transition: color 0.3s ease;
 }
 
-.barra-navegacion-izquierda-TM li a:hover {
+.barra-navegacion-izquierda-hm li a:hover {
     color: #777; /* Color gris al pasar el ratón (opcional) */
 }
 
