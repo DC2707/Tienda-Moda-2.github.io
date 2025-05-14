@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="styles2.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Online - Lista de Productos</title>
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
     <header>
         <h1>Tienda Online</h1>
+        <div class="barra-busqueda">
+            <input type="text" placeholder="Buscar productos...">
+            <button type="submit">Buscar</button>
+        </div>
+        <nav class="barra-navegacion">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Zapatos</a></li>
+                <li><a href="#">Camisas</a></li>
+                <li><a href="#">Pantalones</a></li>
+                <li><a href="#">Accesorios</a></li>
+                <li><a href="#">Ofertas</a></li>
+            </ul>
+        </nav>
         <p>Explora nuestra selección de productos con los mejores precios.</p>
         <div class="carrito-icono">
             <span id="cantidad-carrito">0</span>
@@ -16,6 +30,25 @@
         </div>
     </header>
     <div class="contenedor-principal">
+        <aside class="filtros">
+            <h3>Filtrar por:</h3>
+            <div class="filtro-precio">
+                <h4>Precio</h4>
+                <label><input type="checkbox" value="0-12"> $0 - $12</label><br>
+                <label><input type="checkbox" value="13-16"> $13 - $16</label><br>
+                <label><input type="checkbox" value="17-20"> $17 - $20</label><br>
+            </div>
+            <div class="filtro-talla">
+                <h4>Talla</h4>
+                <label><input type="checkbox" value="S"> S</label><br>
+                <label><input type="checkbox" value="M"> M</label><br>
+                <label><input type="checkbox" value="L"> L</label><br>
+                <label><input type="checkbox" value="XL"> XL</label><br>
+                <label><input type="checkbox" value="30"> 30</label><br>
+                <label><input type="checkbox" value="32"> 32</label><br>
+                <label><input type="checkbox" value="34"> 34</label><br>
+            </div>
+        </aside>
         <div class="productos">
             <div class="producto">
                 <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" alt="Zapatos">
@@ -82,10 +115,19 @@
                 <button class="boton-agregar">Añadir al carrito</button>
             </div>
         </div>
+        <aside class="ordenamiento">
+            <h4>Ordenar por:</h4>
+            <select id="ordenar-productos">
+                <option value="precio-asc">Precio (Menor a Mayor)</option>
+                <option value="precio-desc">Precio (Mayor a Menor)</option>
+                <option value="nombre-asc">Nombre (A-Z)</option>
+                <option value="nombre-desc">Nombre (Z-A)</option>
+            </select>
+        </aside>
         <div class="carrito-detalle">
             <h2>Carrito de Compras</h2>
             <div id="lista-carrito">
-                </div>
+            </div>
             <p id="total-carrito">Total: $0.00</p>
             <button id="boton-comprar">Comprar</button>
         </div>
@@ -94,9 +136,11 @@
         <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página">
     </div>
     <footer><p>@ David Morales</p></footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const botonesAgregar = document.querySelectorAll('.boton-agregar');
+            // Carrito de compras JS (original)
+            const botonesAgregarCarrito = document.querySelectorAll('.boton-agregar');
             const cantidadCarritoElement = document.getElementById('cantidad-carrito');
             const listaCarritoElement = document.getElementById('lista-carrito');
             const totalCarritoElement = document.getElementById('total-carrito');
@@ -135,7 +179,7 @@
                 });
             }
 
-            botonesAgregar.forEach(boton => {
+            botonesAgregarCarrito.forEach(boton => {
                 boton.addEventListener('click', function() {
                     const productoDiv = this.parentNode;
                     const imagenSrc = productoDiv.querySelector('img').src;
@@ -177,7 +221,137 @@
             });
 
             actualizarCarritoVisual();
-        });
-    </script>
-</body>
-</html>
+
+            // Barra de búsqueda JS
+            const barraBusquedaInput = document.querySelector('.barra-busqueda input[type="text"]');
+            const botonBusqueda = document.querySelector('.barra-busqueda button[type="submit"]');
+            const productosDivBusqueda = document.querySelector('.productos');
+            const productosOriginalesBusqueda = Array.from(productosDivBusqueda.children);
+
+            function filtrarProductos(textoBusqueda) {
+                const textoLower = textoBusqueda.toLowerCase();
+                productosDivBusqueda.innerHTML = '';
+
+                productosOriginalesBusqueda.forEach(producto => {
+                    const nombreProducto = producto.querySelector('.nombre-producto').textContent.toLowerCase();
+                    const descripcionProducto = producto.querySelector('.descripcion')?.textContent.toLowerCase() || '';
+
+                    if (nombreProducto.includes(textoLower) || descripcionProducto.includes(textoLower)) {
+                        productosDivBusqueda.appendChild(producto.cloneNode(true));
+                    }
+                });
+
+                if (productosDivBusqueda.children.length === 0) {
+                    productosDivBusqueda.innerHTML = '<p>No se encontraron productos.</p>';
+                }
+                // **Importante:** Re-adjuntar event listeners después de filtrar
+                adjuntarEventListenersCarrito();
+            }
+
+            botonBusqueda.addEventListener('click', () => {
+                const textoBusqueda = barraBusquedaInput.value.trim();
+                filtrarProductos(textoBusqueda);
+            });
+
+            barraBusquedaInput.addEventListener('input', () => {
+                const textoBusqueda = barraBusquedaInput.value.trim();
+                filtrarProductos(textoBusqueda);
+            });
+
+            // Filtros por Precio y Talla JS
+            const filtroPrecioCheckboxes = document.querySelectorAll('.filtro-precio input[type="checkbox"]');
+            const filtroTallaCheckboxes = document.querySelectorAll('.filtro-talla input[type="checkbox"]');
+            const productosDivFiltro = document.querySelector('.productos');
+            const productosOriginalesFiltro = Array.from(productosDivFiltro.children);
+
+            function aplicarFiltros() {
+                const preciosSeleccionados = Array.from(filtroPrecioCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value.split('-').map(Number));
+
+                const tallasSeleccionadas = Array.from(filtroTallaCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                productosDivFiltro.innerHTML = '';
+
+                productosOriginalesFiltro.forEach(productoOriginal => {
+                    const producto = productoOriginal.cloneNode(true);
+                    const precioProducto = parseFloat(producto.querySelector('.precio').textContent.replace('$', ''));
+                    const tallaProductoElement = producto.querySelector('.talla-select');
+                    const tallaProducto = tallaProductoElement ? tallaProductoElement.value : null;
+
+                    const filtroPrecioActivo = preciosSeleccionados.length === 0 || preciosSeleccionados.some(rango => precioProducto >= rango[0] && precioProducto <= rango[1]);
+                    const filtroTallaActivo = tallasSeleccionadas.length === 0 || (tallaProducto && tallasSeleccionadas.includes(tallaProducto));
+
+                    if (filtroPrecioActivo && filtroTallaActivo) {
+                        productosDivFiltro.appendChild(producto);
+                    }
+                });
+
+                if (productosDivFiltro.children.length === 0) {
+                    productosDivFiltro.innerHTML = '<p>No se encontraron productos con los filtros seleccionados.</p>';
+                }
+                // **Importante:** Re-adjuntar event listeners después de filtrar
+                adjuntarEventListenersCarrito();
+            }
+
+            filtroPrecioCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', aplicarFiltros);
+            });
+
+            filtroTallaCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', aplicarFiltros);
+            });
+
+            // Ordenamiento JS
+            const ordenarSelect = document.getElementById('ordenar-productos');
+            const productosDivOrden = document.querySelector('.productos');
+            const productosOriginalesOrden = Array.from(productosDivOrden.children);
+
+            function ordenarProductos(criterio) {
+                let productosAOrdenar = Array.from(productosDivOrden.children);
+
+                productosAOrdenar.sort((a, b) => {
+                    let valorA, valorB;
+
+                    switch (criterio) {
+                        case 'precio-asc':
+                            valorA = parseFloat(a.querySelector('.precio').textContent.replace('$', ''));
+                            valorB = parseFloat(b.querySelector('.precio').textContent.replace('$', ''));
+                            return valorA - valorB;
+                        case 'precio-desc':
+                            valorA = parseFloat(a.querySelector('.precio').textContent.replace('$', ''));
+                            valorB = parseFloat(b.querySelector('.precio').textContent.replace('$', ''));
+                            return valorB - valorA;
+                        case 'nombre-asc':
+                            valorA = a.querySelector('.nombre-producto').textContent.toLowerCase();
+                            valorB = b.querySelector('.nombre-producto').textContent.toLowerCase();
+                            return valorA.localeCompare(valorB);
+                        case 'nombre-desc':
+                            valorA = a.querySelector('.nombre-producto').textContent.toLowerCase();
+                            valorB = b.querySelector('.nombre-producto').textContent.toLowerCase();
+                            return valorB.localeCompare(valorA);
+                        default:
+                            return 0;
+                    }
+                });
+
+                productosDivOrden.innerHTML = '';
+                productosAOrdenar.forEach(producto => {
+                    productosDivOrden.appendChild(producto);
+                });
+                // **Importante:** Re-adjuntar event listeners después de ordenar
+                adjuntarEventListenersCarrito();
+            }
+
+            ordenarSelect.addEventListener('change', () => {
+                const criterioSeleccionado = ordenarSelect.value;
+                ordenarProductos(criterioSeleccionado);
+            });
+
+            // Función para adjuntar event listeners al botón "Añadir al carrito"
+            function adjuntarEventListenersCarrito() {
+                const botonesAgregarNuevos = document.querySelectorAll('.productos .boton-agregar');
+                botonesAgregarNuevos.forEach(boton => {
+                    boton.removeEventListener('click', agregar
