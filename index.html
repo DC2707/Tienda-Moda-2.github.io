@@ -8,8 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Tienda Online</h1>
-        <div class="barra-busqueda">
+        <div class="barra-busqueda-izquierda">
             <input type="text" placeholder="Buscar productos...">
             <button type="submit">Buscar</button>
         </div>
@@ -30,25 +29,6 @@
         </div>
     </header>
     <div class="contenedor-principal">
-        <aside class="filtros">
-            <h3>Filtrar por:</h3>
-            <div class="filtro-precio">
-                <h4>Precio</h4>
-                <label><input type="checkbox" value="0-12"> $0 - $12</label><br>
-                <label><input type="checkbox" value="13-16"> $13 - $16</label><br>
-                <label><input type="checkbox" value="17-20"> $17 - $20</label><br>
-            </div>
-            <div class="filtro-talla">
-                <h4>Talla</h4>
-                <label><input type="checkbox" value="S"> S</label><br>
-                <label><input type="checkbox" value="M"> M</label><br>
-                <label><input type="checkbox" value="L"> L</label><br>
-                <label><input type="checkbox" value="XL"> XL</label><br>
-                <label><input type="checkbox" value="30"> 30</label><br>
-                <label><input type="checkbox" value="32"> 32</label><br>
-                <label><input type="checkbox" value="34"> 34</label><br>
-            </div>
-        </aside>
         <div class="productos">
             <div class="producto">
                 <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" alt="Zapatos">
@@ -222,9 +202,9 @@
 
             actualizarCarritoVisual();
 
-            // Barra de búsqueda JS
-            const barraBusquedaInput = document.querySelector('.barra-busqueda input[type="text"]');
-            const botonBusqueda = document.querySelector('.barra-busqueda button[type="submit"]');
+           
+            const barraBusquedaInput = document.querySelector('.barra-busqueda-izquierda input[type="text"]');
+            const botonBusqueda = document.querySelector('.barra-busqueda-izquierda button[type="submit"]');
             const productosDivBusqueda = document.querySelector('.productos');
             const productosOriginalesBusqueda = Array.from(productosDivBusqueda.children);
 
@@ -244,7 +224,7 @@
                 if (productosDivBusqueda.children.length === 0) {
                     productosDivBusqueda.innerHTML = '<p>No se encontraron productos.</p>';
                 }
-                // **Importante:** Re-adjuntar event listeners después de filtrar
+                
                 adjuntarEventListenersCarrito();
             }
 
@@ -258,53 +238,7 @@
                 filtrarProductos(textoBusqueda);
             });
 
-            // Filtros por Precio y Talla JS
-            const filtroPrecioCheckboxes = document.querySelectorAll('.filtro-precio input[type="checkbox"]');
-            const filtroTallaCheckboxes = document.querySelectorAll('.filtro-talla input[type="checkbox"]');
-            const productosDivFiltro = document.querySelector('.productos');
-            const productosOriginalesFiltro = Array.from(productosDivFiltro.children);
-
-            function aplicarFiltros() {
-                const preciosSeleccionados = Array.from(filtroPrecioCheckboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value.split('-').map(Number));
-
-                const tallasSeleccionadas = Array.from(filtroTallaCheckboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value);
-
-                productosDivFiltro.innerHTML = '';
-
-                productosOriginalesFiltro.forEach(productoOriginal => {
-                    const producto = productoOriginal.cloneNode(true);
-                    const precioProducto = parseFloat(producto.querySelector('.precio').textContent.replace('$', ''));
-                    const tallaProductoElement = producto.querySelector('.talla-select');
-                    const tallaProducto = tallaProductoElement ? tallaProductoElement.value : null;
-
-                    const filtroPrecioActivo = preciosSeleccionados.length === 0 || preciosSeleccionados.some(rango => precioProducto >= rango[0] && precioProducto <= rango[1]);
-                    const filtroTallaActivo = tallasSeleccionadas.length === 0 || (tallaProducto && tallasSeleccionadas.includes(tallaProducto));
-
-                    if (filtroPrecioActivo && filtroTallaActivo) {
-                        productosDivFiltro.appendChild(producto);
-                    }
-                });
-
-                if (productosDivFiltro.children.length === 0) {
-                    productosDivFiltro.innerHTML = '<p>No se encontraron productos con los filtros seleccionados.</p>';
-                }
-                // **Importante:** Re-adjuntar event listeners después de filtrar
-                adjuntarEventListenersCarrito();
-            }
-
-            filtroPrecioCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', aplicarFiltros);
-            });
-
-            filtroTallaCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', aplicarFiltros);
-            });
-
-            // Ordenamiento JS
+            
             const ordenarSelect = document.getElementById('ordenar-productos');
             const productosDivOrden = document.querySelector('.productos');
             const productosOriginalesOrden = Array.from(productosDivOrden.children);
@@ -354,4 +288,44 @@
             function adjuntarEventListenersCarrito() {
                 const botonesAgregarNuevos = document.querySelectorAll('.productos .boton-agregar');
                 botonesAgregarNuevos.forEach(boton => {
-                    boton.removeEventListener('click', agregar
+                    boton.removeEventListener('click', agregarAlCarrito); // Evitar duplicados
+                    boton.addEventListener('click', agregarAlCarrito);
+                });
+            }
+
+            function agregarAlCarrito(event) {
+                const boton = event.target;
+                const productoDiv = boton.parentNode;
+                const imagenSrc = productoDiv.querySelector('img').src;
+                const precioTexto = productoDiv.querySelector('.precio').textContent;
+                const nombre = productoDiv.querySelector('.nombre-producto').textContent;
+                const selectorTalla = productoDiv.querySelector('.talla-select');
+                let tallaSeleccionada = selectorTalla ? selectorTalla.value : null;
+
+                if (productoDiv.classList.contains('con-talla') && !tallaSeleccionada) {
+                    alert(`Por favor, selecciona la talla para ${nombre}.`);
+                    return;
+                }
+
+                const productoExistente = carrito.find(item => item.nombre === nombre && item.talla === tallaSeleccionada);
+
+                if (productoExistente) {
+                    productoExistente.cantidad++;
+                } else {
+                    carrito.push({
+                        imagen: imagenSrc,
+                        precio: precioTexto,
+                        nombre: nombre,
+                        cantidad: 1,
+                        talla: tallaSeleccionada
+                    });
+                }
+                actualizarCarritoVisual();
+            }
+
+            // Inicializar los event listeners de los botones de agregar al carrito
+            adjuntarEventListenersCarrito();
+        });
+    </script>
+</body>
+</html>
