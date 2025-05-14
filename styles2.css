@@ -30,21 +30,22 @@
 }
 
 
+
 .barra-navegacion-izquierda-TM {
-    background-color: #fff; 
-    padding: 15px 20px; 
-    border-bottom: 1px solid #ccc; 
-    text-align: left; 
+    background-color: #fff; /* Fondo blanco */
+    padding: 15px 20px; /* Espaciado vertical y horizontal */
+    border-bottom: 1px solid #ccc; /* Línea inferior sutil */
+    text-align: left; /* Alinea el texto a la izquierda del contenedor */
 }
 
 .barra-navegacion-izquierda-TM ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: row; 
-    align-items: center; 
-    gap: 20px; 
+    display: flex; /* Utiliza flexbox para la disposición horizontal */
+    flex-direction: row; /* Asegura que los elementos estén en fila */
+    align-items: center; /* Centrar verticalmente los elementos (opcional) */
+    gap: 30px; /* Espacio entre las categorías */
 }
 
 .barra-navegacion-izquierda-TM li a {
@@ -52,7 +53,7 @@
     color: black; /* Texto negro */
     font-size: 1em;
     font-weight: bold;
-    padding: 5px 0; 
+    padding: 5px 0; /* Espaciado vertical */
     transition: color 0.3s ease;
 }
 
