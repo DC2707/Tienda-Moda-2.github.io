@@ -4,284 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Online - Mujer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <header>
-        <div class="barra-busqueda-izquierda">
-            <input type="text" placeholder="Buscar productos...">
-            <button type="submit">Buscar</button>
-        </div>
-        <nav class="barra-navegacion-izquierda-hm">
-            <ul>
-                <li><a href="mujer.html" class="active">Mujer</a></li>
-                <li><a href="hombre.html">Hombre</a></li>
-                <li><a href="ninos.html">Niños</a></li>
-                <li><a href="sport.html">Sport</a></li>
-                <li><a href="rebajas.html">Rebajas</a></li>
-            </ul>
-        </nav>
-        <p>Explora nuestra selección de productos para mujer con los mejores precios.</p>
-        <div class="carrito-icono">
-            <span id="cantidad-carrito">0</span>
-            <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito">
+    <header class="bg-light py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar productos...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" href="mujer.html">Mujer</a></li>
+                            <li class="nav-item"><a class="nav-link" href="hombre.html">Hombre</a></li>
+                            <li class="nav-item"><a class="nav-link" href="ninos.html">Niños</a></li>
+                            <li class="nav-item"><a class="nav-link" href="sport.html">Sport</a></li>
+                            <li class="nav-item"><a class="nav-link" href="rebajas.html">Rebajas</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-3 text-right">
+                    <div class="position-relative d-inline-block">
+                        <span class="badge badge-pill badge-danger position-absolute" style="top: -10px; right: -10px;" id="cantidad-carrito">0</span>
+                        <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito" width="30">
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="contenedor-principal">
-        <div class="productos">
-            <div class="producto">
-                <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa de Mujer">
-                <p class="precio">$25.99</p>
-                <p class="nombre-producto">Camisa Elegante Mujer</p>
-                <button class="boton-agregar">Añadir al carrito</button>
+
+    <div class="container mt-4">
+        <p class="lead">Explora nuestra selección de productos para mujer con los mejores precios.</p>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="img-tienda2/w=800,h=800,fit=pad.avif" class="card-img-top" alt="Camisa de Mujer">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Camisa Elegante Mujer</h5>
+                                <p class="card-text">$25.99</p>
+                                <button class="btn btn-primary boton-agregar">Añadir al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" class="card-img-top" alt="Pantalón de Mujer">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Pantalón de Vestir Mujer</h5>
+                                <p class="card-text">$35.50</p>
+                                <div class="form-group">
+                                    <label for="talla-pantalon-mujer">Talla:</label>
+                                    <select class="form-control talla-select" id="talla-pantalon-mujer">
+                                        <option value="">Seleccionar</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary boton-agregar">Añadir al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
-            <div class="producto con-talla">
-                <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón de Mujer">
-                <p class="precio">$35.50</p>
-                <p class="nombre-producto">Pantalón de Vestir Mujer</p>
-                <div class="selector-talla">
-                    <label for="talla-pantalon-mujer">Talla:</label>
-                    <select class="talla-select" id="talla-pantalon-mujer">
-                        <option value="">Seleccionar</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
+            <div class="col-md-3">
+                <aside class="ordenamiento">
+                    <h4>Ordenar por:</h4>
+                    <select class="form-control" id="ordenar-productos">
+                        <option value="precio-asc">Precio (Menor a Mayor)</option>
+                        <option value="precio-desc">Precio (Mayor a Menor)</option>
+                        <option value="nombre-asc">Nombre (A-Z)</option>
+                        <option value="nombre-desc">Nombre (Z-A)</option>
                     </select>
+                </aside>
+                <div class="carrito-detalle mt-4">
+                    <h2>Carrito de Compras</h2>
+                    <div id="lista-carrito">
+                        </div>
+                    <p id="total-carrito">Total: $0.00</p>
+                    <button id="boton-comprar" class="btn btn-success btn-block">Comprar</button>
                 </div>
-                <button class="boton-agregar">Añadir al carrito</button>
             </div>
-            </div>
-        <aside class="ordenamiento">
-            <h4>Ordenar por:</h4>
-            <select id="ordenar-productos">
-                <option value="precio-asc">Precio (Menor a Mayor)</option>
-                <option value="precio-desc">Precio (Mayor a Menor)</option>
-                <option value="nombre-asc">Nombre (A-Z)</option>
-                <option value="nombre-desc">Nombre (Z-A)</option>
-            </select>
-        </aside>
-        <div class="carrito-detalle">
-            <h2>Carrito de Compras</h2>
-            <div id="lista-carrito">
-            </div>
-            <p id="total-carrito">Total: $0.00</p>
-            <button id="boton-comprar">Comprar</button>
         </div>
     </div>
-    <div class="imagen-abajo">
-        <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página">
-    </div>
-    <footer><p>@ David Morales</p></footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Carrito de compras JS (original)
-            const botonesAgregarCarrito = document.querySelectorAll('.boton-agregar');
-            const cantidadCarritoElement = document.getElementById('cantidad-carrito');
-            const listaCarritoElement = document.getElementById('lista-carrito');
-            const totalCarritoElement = document.getElementById('total-carrito');
-            const botonComprar = document.getElementById('boton-comprar');
-            const carrito = [];
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 David Morales</p>
+        </div>
+    </footer>
 
-            function actualizarCarritoVisual() {
-                cantidadCarritoElement.textContent = carrito.length;
-                listaCarritoElement.innerHTML = '';
-                let total = 0;
-
-                carrito.forEach((item, index) => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('item-en-carrito');
-                    let detallesTalla = item.talla ? `<span class="detalle-talla">Talla: ${item.talla}</span>` : '';
-                    itemDiv.innerHTML = `
-                        <img src="${item.imagen}" alt="${item.nombre}" width="50">
-                        <p>${item.nombre} ${detallesTalla}</p>
-                        <p>${item.precio}</p>
-                        <span class="cantidad-item">(${item.cantidad})</span>
-                        <button class="boton-eliminar-item" data-index="${index}">Eliminar</button>
-                    `;
-                    listaCarritoElement.appendChild(itemDiv);
-                    total += parseFloat(item.precio.replace('$', '')) * item.cantidad;
-                });
-
-                totalCarritoElement.textContent = `Total: $${total.toFixed(2)}`;
-
-                const botonesEliminarItem = document.querySelectorAll('.boton-eliminar-item');
-                botonesEliminarItem.forEach(boton => {
-                    boton.addEventListener('click', function() {
-                        const indexAEliminar = parseInt(this.dataset.index);
-                        carrito.splice(indexAEliminar, 1);
-                        actualizarCarritoVisual();
-                    });
-                });
-            }
-
-            botonesAgregarCarrito.forEach(boton => {
-                boton.addEventListener('click', function() {
-                    const productoDiv = this.parentNode;
-                    const imagenSrc = productoDiv.querySelector('img').src;
-                    const precioTexto = productoDiv.querySelector('.precio').textContent;
-                    const nombre = productoDiv.querySelector('.nombre-producto').textContent;
-                    const selectorTalla = productoDiv.querySelector('.talla-select');
-                    let tallaSeleccionada = selectorTalla ? selectorTalla.value : null;
-
-                    if (productoDiv.classList.contains('con-talla') && !tallaSeleccionada) {
-                        alert(`Por favor, selecciona la talla para ${nombre}.`);
-                        return;
-                    }
-
-                    const productoExistente = carrito.find(item => item.nombre === nombre && item.talla === tallaSeleccionada);
-
-                    if (productoExistente) {
-                        productoExistente.cantidad++;
-                    } else {
-                        carrito.push({
-                            imagen: imagenSrc,
-                            precio: precioTexto,
-                            nombre: nombre,
-                            cantidad: 1,
-                            talla: tallaSeleccionada
-                        });
-                    }
-                    actualizarCarritoVisual();
-                });
-            });
-
-            botonComprar.addEventListener('click', () => {
-                if (carrito.length > 0) {
-                    alert('¡Gracias por tu compra!');
-                    carrito.length = 0;
-                    actualizarCarritoVisual();
-                } else {
-                    alert('El carrito está vacío. ¡Agrega algunos productos!');
-                }
-            });
-
-            actualizarCarritoVisual();
-
-           
-            const barraBusquedaInput = document.querySelector('.barra-busqueda-izquierda input[type="text"]');
-            const botonBusqueda = document.querySelector('.barra-busqueda-izquierda button[type="submit"]');
-            const productosDivBusqueda = document.querySelector('.productos');
-            const productosOriginalesBusqueda = Array.from(productosDivBusqueda.children);
-
-            function filtrarProductos(textoBusqueda) {
-                const textoLower = textoBusqueda.toLowerCase();
-                productosDivBusqueda.innerHTML = '';
-
-                productosOriginalesBusqueda.forEach(producto => {
-                    const nombreProducto = producto.querySelector('.nombre-producto').textContent.toLowerCase();
-                    const descripcionProducto = producto.querySelector('.descripcion')?.textContent.toLowerCase() || '';
-
-                    if (nombreProducto.includes(textoLower) || descripcionProducto.includes(textoLower)) {
-                        productosDivBusqueda.appendChild(producto.cloneNode(true));
-                    }
-                });
-
-                if (productosDivBusqueda.children.length === 0) {
-                    productosDivBusqueda.innerHTML = '<p>No se encontraron productos.</p>';
-                }
-                
-                adjuntarEventListenersCarrito();
-            }
-
-            botonBusqueda.addEventListener('click', () => {
-                const textoBusqueda = barraBusquedaInput.value.trim();
-                filtrarProductos(textoBusqueda);
-            });
-
-            barraBusquedaInput.addEventListener('input', () => {
-                const textoBusqueda = barraBusquedaInput.value.trim();
-                filtrarProductos(textoBusqueda);
-            });
-
-            
-            const ordenarSelect = document.getElementById('ordenar-productos');
-            const productosDivOrden = document.querySelector('.productos');
-            const productosOriginalesOrden = Array.from(productosDivOrden.children);
-
-            function ordenarProductos(criterio) {
-                let productosAOrdenar = Array.from(productosDivOrden.children);
-
-                productosAOrdenar.sort((a, b) => {
-                    let valorA, valorB;
-
-                    switch (criterio) {
-                        case 'precio-asc':
-                            valorA = parseFloat(a.querySelector('.precio').textContent.replace('$', ''));
-                            valorB = parseFloat(b.querySelector('.precio').textContent.replace('$', ''));
-                            return valorA - valorB;
-                        case 'precio-desc':
-                            valorA = parseFloat(a.querySelector('.precio').textContent.replace('$', ''));
-                            valorB = parseFloat(b.querySelector('.precio').textContent.replace('$', ''));
-                            return valorB - valorA;
-                        case 'nombre-asc':
-                            valorA = a.querySelector('.nombre-producto').textContent.toLowerCase();
-                            valorB = b.querySelector('.nombre-producto').textContent.toLowerCase();
-                            return valorA.localeCompare(valorB);
-                        case 'nombre-desc':
-                            valorA = a.querySelector('.nombre-producto').textContent.toLowerCase();
-                            valorB = b.querySelector('.nombre-producto').textContent.toLowerCase();
-                            return valorB.localeCompare(valorA);
-                        default:
-                            return 0;
-                    }
-                });
-
-                productosDivOrden.innerHTML = '';
-                productosAOrdenar.forEach(producto => {
-                    productosDivOrden.appendChild(producto);
-                });
-                // **Importante:** Re-adjuntar event listeners después de ordenar
-                adjuntarEventListenersCarrito();
-            }
-
-            ordenarSelect.addEventListener('change', () => {
-                const criterioSeleccionado = ordenarSelect.value;
-                ordenarProductos(criterioSeleccionado);
-            });
-
-            // Función para adjuntar event listeners al botón "Añadir al carrito"
-            function adjuntarEventListenersCarrito() {
-                const botonesAgregarNuevos = document.querySelectorAll('.productos .boton-agregar');
-                botonesAgregarNuevos.forEach(boton => {
-                    boton.removeEventListener('click', agregarAlCarrito); // Evitar duplicados
-                    boton.addEventListener('click', agregarAlCarrito);
-                });
-            }
-
-            function agregarAlCarrito(event) {
-                const boton = event.target;
-                const productoDiv = boton.parentNode;
-                const imagenSrc = productoDiv.querySelector('img').src;
-                const precioTexto = productoDiv.querySelector('.precio').textContent;
-                const nombre = productoDiv.querySelector('.nombre-producto').textContent;
-                const selectorTalla = productoDiv.querySelector('.talla-select');
-                let tallaSeleccionada = selectorTalla ? selectorTalla.value : null;
-
-                if (productoDiv.classList.contains('con-talla') && !tallaSeleccionada) {
-                    alert(`Por favor, selecciona la talla para ${nombre}.`);
-                    return;
-                }
-
-                const productoExistente = carrito.find(item => item.nombre === nombre && item.talla === tallaSeleccionada);
-
-                if (productoExistente) {
-                    productoExistente.cantidad++;
-                } else {
-                    carrito.push({
-                        imagen: imagenSrc,
-                        precio: precioTexto,
-                        nombre: nombre,
-                        cantidad: 1,
-                        talla: tallaSeleccionada
-                    });
-                }
-                actualizarCarritoVisual();
-            }
-
-            // Inicializar los event listeners de los botones de agregar al carrito
-            adjuntarEventListenersCarrito();
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="tu_script.js"></script>
 </body>
 </html>
