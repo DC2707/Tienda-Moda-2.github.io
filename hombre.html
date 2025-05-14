@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online - Mujer</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <header>
+        <div class="barra-busqueda-izquierda">
+            <input type="text" placeholder="Buscar productos...">
+            <button type="submit">Buscar</button>
+        </div>
+        <nav class="barra-navegacion-izquierda-hm">
+            <ul>
+                <li><a href="mujer.html">Mujer</a></li>
+                <li><a href="hombre.html"class="active">Hombre</a></li>
+                <li><a href="ninos.html">Niños</a></li>
+                <li><a href="sport.html">Sport</a></li>
+                <li><a href="rebajas.html">Rebajas</a></li>
+            </ul>
+        </nav>
+        <p>Explora nuestra selección de productos para mujer con los mejores precios.</p>
+        <div class="carrito-icono">
+            <span id="cantidad-carrito">0</span>
+            <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito">
+        </div>
+    </header>
+    <div class="contenedor-principal">
+        <div class="productos">
+            <div class="producto">
+                <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa de Mujer">
+                <p class="precio">$25.99</p>
+                <p class="nombre-producto">Camisa Elegante Mujer</p>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            <div class="producto con-talla">
+                <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón de Mujer">
+                <p class="precio">$35.50</p>
+                <p class="nombre-producto">Pantalón de Vestir Mujer</p>
+                <div class="selector-talla">
+                    <label for="talla-pantalon-mujer">Talla:</label>
+                    <select class="talla-select" id="talla-pantalon-mujer">
+                        <option value="">Seleccionar</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                    </select>
+                </div>
+                <button class="boton-agregar">Añadir al carrito</button>
+            </div>
+            </div>
+        <aside class="ordenamiento">
+            <h4>Ordenar por:</h4>
+            <select id="ordenar-productos">
+                <option value="precio-asc">Precio (Menor a Mayor)</option>
+                <option value="precio-desc">Precio (Mayor a Menor)</option>
+                <option value="nombre-asc">Nombre (A-Z)</option>
+                <option value="nombre-desc">Nombre (Z-A)</option>
+            </select>
+        </aside>
+        <div class="carrito-detalle">
+            <h2>Carrito de Compras</h2>
+            <div id="lista-carrito">
+            </div>
+            <p id="total-carrito">Total: $0.00</p>
+            <button id="boton-comprar">Comprar</button>
+        </div>
+    </div>
+    <div class="imagen-abajo">
+        <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página">
+    </div>
+    <footer><p>@ David Morales</p></footer>
+
+    <script>
+        // ... (Tu código JavaScript para el carrito y funcionalidades) ...
+    </script>
+</body>
+</html>
