@@ -4,117 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Online - Lista de Productos</title>
-    <link rel="stylesheet" href="styles2.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-    <div class="barra-busqueda-izquierda">
-        <input type="text" placeholder="Buscar productos...">
-        <button type="submit">Buscar</button>
-    </div>
-    <nav class="barra-navegacion-izquierda-hm">
-        <ul>
-            <li><a href="#">Mujer</a></li>
-            <li><a href="#">Hombre</a></li>
-            <li><a href="#">Niños</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Rebajas</a></li>
-        </ul>
-    </nav>
-    <p>Explora nuestra selección de productos con los mejores precios.</p>
-    <div class="carrito-icono">
-        <span id="cantidad-carrito">0</span>
-        <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito">
-    </div>
-</header>
-    <div class="contenedor-principal">
-        <div class="productos">
-            <div class="producto">
-                <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" alt="Zapatos">
-                <p class="precio">$10.99</p>
-                <p class="nombre-producto">Zapatos</p>
-                <button class="boton-agregar">Añadir al carrito</button>
+    <header class="container-fluid bg-light py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="barra-busqueda-izquierda d-flex">
+                <input type="text" class="form-control me-2" placeholder="Buscar productos...">
+                <button type="submit" class="btn btn-outline-secondary">Buscar</button>
             </div>
-            <div class="producto con-talla">
-                <img src="img-tienda2/w=800,h=800,fit=pad.avif" alt="Camisa">
-                <p class="precio">$15.99</p>
-                <p class="nombre-producto">Camisa</p>
-                <div class="selector-talla">
-                    <label for="talla-camisa">Talla:</label>
-                    <select class="talla-select" id="talla-camisa">
-                        <option value="">Seleccionar</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                    </select>
-                </div>
-                <button class="boton-agregar">Añadir al carrito</button>
-            </div>
-            <div class="producto">
-                <img src="img-tienda2/1698574544ecd7d826d3bafe9749acc82bba70464b_thumbnail_720x.jpg" alt="Cinturon">
-                <p class="precio">$9.59</p>
-                <p class="nombre-producto">Cinturon</p>
-                <button class="boton-agregar">Añadir al carrito</button>
-            </div>
-            <div class="producto">
-                <img src="img-tienda2/e180d93b-817c-4c33-a8ba-9fa590228b31.webp" alt="Medias">
-                <p class="precio">$7.49</p>
-                <p class="nombre-producto">Medias</p>
-                <button class="boton-agregar">Añadir al carrito</button>
-            </div>
-            <div class="producto con-talla">
-                <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" alt="Pantalón">
-                <p class="precio">$12.29</p>
-                <p class="nombre-producto">Pantalón</p>
-                <div class="selector-talla">
-                    <label for="talla-pantalon">Talla:</label>
-                    <select class="talla-select" id="talla-pantalon">
-                        <option value="">Seleccionar</option>
-                        <option value="30">30</option>
-                        <option value="32">32</option>
-                        <option value="34">34</option>
-                    </select>
-                </div>
-                <button class="boton-agregar">Añadir al carrito</button>
-            </div>
-            <div class="producto con-talla">
-                <img src="img-tienda2/devre-saco_02d000118-060_001.webp" alt="Saco">
-                <p class="precio">$16.89</p>
-                <p class="nombre-producto">Saco</p>
-                <div class="selector-talla">
-                    <label for="talla-saco">Talla:</label>
-                    <select class="talla-select" id="talla-saco">
-                        <option value="">Seleccionar</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select>
-                </div>
-                <button class="boton-agregar">Añadir al carrito</button>
+            <nav class="barra-navegacion-izquierda-hm">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mujer</a>
+                        <ul>
+                            <li><a href="#">Ropa</a></li>
+                            <li><a href="#">Zapatos</a></li>
+                            <li><a href="#">Accesorios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hombre</a>
+                        <ul>
+                            <li><a href="#">Ropa</a></li>
+                            <li><a href="#">Zapatos</a></li>
+                            <li><a href="#">Accesorios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Niños</a>
+                        <ul>
+                            <li><a href="#">Ropa</a></li>
+                            <li><a href="#">Zapatos</a></li>
+                            <li><a href="#">Juguetes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sport</a>
+                        <ul>
+                            <li><a href="#">Ropa Deportiva</a></li>
+                            <li><a href="#">Calzado Deportivo</a></li>
+                            <li><a href="#">Accesorios Deportivos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Rebajas</a>
+                        <ul>
+                            <li><a href="#">Todas las Rebajas</a></li>
+                            <li><a href="#">Ropa con Descuento</a></li>
+                            <li><a href="#">Accesorios en Oferta</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <p class="mb-0 d-none d-md-block">Explora nuestra selección de productos con los mejores precios.</p>
+            <div class="carrito-icono">
+                <span id="cantidad-carrito" class="badge bg-danger rounded-pill">0</span>
+                <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito">
             </div>
         </div>
-        <aside class="ordenamiento">
-            <h4>Ordenar por:</h4>
-            <select id="ordenar-productos">
-                <option value="precio-asc">Precio (Menor a Mayor)</option>
-                <option value="precio-desc">Precio (Mayor a Menor)</option>
-                <option value="nombre-asc">Nombre (A-Z)</option>
-                <option value="nombre-desc">Nombre (Z-A)</option>
-            </select>
-        </aside>
-        <div class="carrito-detalle">
-            <h2>Carrito de Compras</h2>
-            <div id="lista-carrito">
+    </header>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-9 productos">
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/9c7a885c9ed4389a84316f0388052655.webp" class="card-img-top" alt="Zapatos">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$10.99</p>
+                        <h5 class="nombre-producto card-title">Zapatos</h5>
+                        <button class="boton-agregar btn btn-primary">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/w=800,h=800,fit=pad.avif" class="card-img-top" alt="Camisa">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$15.99</p>
+                        <h5 class="nombre-producto card-title">Camisa</h5>
+                        <div class="selector-talla">
+                            <label for="talla-camisa" class="form-label">Talla:</label>
+                            <select class="form-select talla-select" id="talla-camisa">
+                                <option value="">Seleccionar</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                            </select>
+                        </div>
+                        <button class="boton-agregar btn btn-primary mt-2">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/1698574544ecd7d826d3bafe9749acc82bba70464b_thumbnail_720x.jpg" class="card-img-top" alt="Cinturon">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$9.59</p>
+                        <h5 class="nombre-producto card-title">Cinturon</h5>
+                        <button class="boton-agregar btn btn-primary">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/e180d93b-817c-4c33-a8ba-9fa590228b31.webp" class="card-img-top" alt="Medias">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$7.49</p>
+                        <h5 class="nombre-producto card-title">Medias</h5>
+                        <button class="boton-agregar btn btn-primary">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/Pantal_n_Satinado_para_mujer_dyaboo_1890032_crudo_600x.jpg" class="card-img-top" alt="Pantalón">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$12.29</p>
+                        <h5 class="nombre-producto card-title">Pantalón</h5>
+                        <div class="selector-talla">
+                            <label for="talla-pantalon" class="form-label">Talla:</label>
+                            <select class="form-select talla-select" id="talla-pantalon">
+                                <option value="">Seleccionar</option>
+                                <option value="30">30</option>
+                                <option value="32">32</option>
+                                <option value="34">34</option>
+                            </select>
+                        </div>
+                        <button class="boton-agregar btn btn-primary mt-2">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="producto card shadow-sm">
+                    <img src="img-tienda2/devre-saco_02d000118-060_001.webp" class="card-img-top" alt="Saco">
+                    <div class="card-body text-center">
+                        <p class="precio card-text">$16.89</p>
+                        <h5 class="nombre-producto card-title">Saco</h5>
+                        <div class="selector-talla">
+                            <label for="talla-saco" class="form-label">Talla:</label>
+                            <select class="form-select talla-select" id="talla-saco">
+                                <option value="">Seleccionar</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                        </div>
+                        <button class="boton-agregar btn btn-primary mt-2">Añadir al carrito</button>
+                    </div>
+                </div>
             </div>
-            <p id="total-carrito">Total: $0.00</p>
-            <button id="boton-comprar">Comprar</button>
+            <aside class="col-md-3">
+                <div class="ordenamiento mb-4">
+                    <h4>Ordenar por:</h4>
+                    <select class="form-select" id="ordenar-productos">
+                        <option value="precio-asc">Precio (Menor a Mayor)</option>
+                        <option value="precio-desc">Precio (Mayor a Menor)</option>
+                        <option value="nombre-asc">Nombre (A-Z)</option>
+                        <option value="nombre-desc">Nombre (Z-A)</option>
+                    </select>
+                </div>
+                <div class="carrito-detalle bg-light p-3 rounded">
+                    <h2>Carrito de Compras</h2>
+                    <div id="lista-carrito">
+                        </div>
+                    <p id="total-carrito" class="fw-bold mt-2">Total: $0.00</p>
+                    <button id="boton-comprar" class="btn btn-success w-100">Comprar</button>
+                </div>
+            </aside>
         </div>
     </div>
-    <div class="imagen-abajo">
-        <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página">
+    <div class="container mt-4 imagen-abajo">
+        <img src="img-tienda2/Tienda Moda.png" alt="Imagen al final de la página" class="img-fluid">
     </div>
-    <footer><p>@ David Morales</p></footer>
+    <footer class="mt-4 bg-light text-center py-2">
+        <p class="mb-0">@ David Morales</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -160,8 +216,8 @@
 
             botonesAgregarCarrito.forEach(boton => {
                 boton.addEventListener('click', function() {
-                    const productoDiv = this.parentNode;
-                    const imagenSrc = productoDiv.querySelector('img').src;
+                    const productoDiv = this.parentNode.parentNode; // Subimos al div del producto (card)
+                    const imagenSrc = productoDiv.querySelector('.card-img-top').src;
                     const precioTexto = productoDiv.querySelector('.precio').textContent;
                     const nombre = productoDiv.querySelector('.nombre-producto').textContent;
                     const selectorTalla = productoDiv.querySelector('.talla-select');
@@ -201,7 +257,7 @@
 
             actualizarCarritoVisual();
 
-           
+
             const barraBusquedaInput = document.querySelector('.barra-busqueda-izquierda input[type="text"]');
             const botonBusqueda = document.querySelector('.barra-busqueda-izquierda button[type="submit"]');
             const productosDivBusqueda = document.querySelector('.productos');
@@ -223,7 +279,7 @@
                 if (productosDivBusqueda.children.length === 0) {
                     productosDivBusqueda.innerHTML = '<p>No se encontraron productos.</p>';
                 }
-                
+
                 adjuntarEventListenersCarrito();
             }
 
@@ -237,7 +293,7 @@
                 filtrarProductos(textoBusqueda);
             });
 
-            
+
             const ordenarSelect = document.getElementById('ordenar-productos');
             const productosDivOrden = document.querySelector('.productos');
             const productosOriginalesOrden = Array.from(productosDivOrden.children);
@@ -287,44 +343,4 @@
             function adjuntarEventListenersCarrito() {
                 const botonesAgregarNuevos = document.querySelectorAll('.productos .boton-agregar');
                 botonesAgregarNuevos.forEach(boton => {
-                    boton.removeEventListener('click', agregarAlCarrito); // Evitar duplicados
-                    boton.addEventListener('click', agregarAlCarrito);
-                });
-            }
-
-            function agregarAlCarrito(event) {
-                const boton = event.target;
-                const productoDiv = boton.parentNode;
-                const imagenSrc = productoDiv.querySelector('img').src;
-                const precioTexto = productoDiv.querySelector('.precio').textContent;
-                const nombre = productoDiv.querySelector('.nombre-producto').textContent;
-                const selectorTalla = productoDiv.querySelector('.talla-select');
-                let tallaSeleccionada = selectorTalla ? selectorTalla.value : null;
-
-                if (productoDiv.classList.contains('con-talla') && !tallaSeleccionada) {
-                    alert(`Por favor, selecciona la talla para ${nombre}.`);
-                    return;
-                }
-
-                const productoExistente = carrito.find(item => item.nombre === nombre && item.talla === tallaSeleccionada);
-
-                if (productoExistente) {
-                    productoExistente.cantidad++;
-                } else {
-                    carrito.push({
-                        imagen: imagenSrc,
-                        precio: precioTexto,
-                        nombre: nombre,
-                        cantidad: 1,
-                        talla: tallaSeleccionada
-                    });
-                }
-                actualizarCarritoVisual();
-            }
-
-            // Inicializar los event listeners de los botones de agregar al carrito
-            adjuntarEventListenersCarrito();
-        });
-    </script>
-</body>
-</html>
+                    boton.removeEventListener('click', agregarAlCarrito);
