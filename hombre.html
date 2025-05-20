@@ -33,7 +33,7 @@
                 <div class="col-md-3 text-right">
                     <div class="position-relative d-inline-block">
                         <span class="badge badge-pill badge-danger position-absolute" style="top: -10px; right: -10px;" id="cantidad-carrito">0</span>
-                        <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito" width="30">
+                        <img src="img-tienda2/Logotipo Carrito de Compras de Supermercado Minimalista Naranja y Rojo.png" alt="Carrito" width="60">
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                             <img src="img-tienda2/1698574544ecd7d826d3bafe9749acc82bba70464b_thumbnail_720x.jpg" class="card-img-top" alt="Cinturon">
                             <div class="card-body text-center">
                                 <h5 class="card-title nombre-producto">Cinturon</h5>
-                                <p class="card-text">$9.59</p>
+                                <p class="card-text precio">$9.59</p>
                                 <button class="btn btn-primary boton-agregar">Añadir al carrito</button>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <img src="img-tienda2/devre-saco_02d000118-060_001.webp " class="card-img-top" alt="Saco">
                             <div class="card-body text-center">
                                 <h5 class="card-title nombre-producto">Saco</h5>
-                                <p class="card-text">$16.89</p>
+                                <p class="card-text precio">$16.89</p>
                                 <button class="btn btn-primary boton-agregar">Añadir al carrito</button>
                             </div>
                         </div>
@@ -145,10 +145,9 @@
         });
     }
 
-    // Lógica para añadir al carrito (refactorizada)
+    // Lógica para añadir al carrito
     function agregarAlCarrito(event) {
         const boton = event.target;
-        // Subimos dos niveles para llegar al card-body y luego al card completo
         const cardBody = boton.closest('.card-body');
         const card = boton.closest('.card');
 
