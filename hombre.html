@@ -180,6 +180,27 @@
         }
         actualizarCarritoVisual();
     }
+         botonComprar.addEventListener('click', () => {
+
+                if (carrito.length > 0) {
+
+                    alert('¡Gracias por tu compra!');
+
+                    carrito.length = 0;
+
+                    actualizarCarritoVisual();
+
+                } else {
+
+                    alert('El carrito está vacío. ¡Agrega algunos productos!');
+
+                }
+
+            });
+
+
+
+            actualizarCarritoVisual();
 
     // Función para adjuntar event listeners al botón "Añadir al carrito"
     function adjuntarEventListenersCarrito() {
