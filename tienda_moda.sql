@@ -1,9 +1,4 @@
 
--- Base de datos para Tienda de Moda
-
-CREATE DATABASE IF NOT EXISTS tienda_moda;
-USE tienda_moda;
-
 -- Tabla de Categorías
 CREATE TABLE categorias (
   id_categoria INT AUTO_INCREMENT PRIMARY KEY,
